@@ -92,7 +92,9 @@ client.on('message', message => {
     if (command == 'stats'){
         client.commands.get('stats').execute(message, args, Discord);
     }
-
+    if (command == 'leaders'){
+        client.commands.get('leaders').execute(message, args, Discord);
+    }
 });
 
 client.on('ready', () => {
@@ -154,6 +156,7 @@ function giveEarlyPoints(){
                         money: 0,
                         last_message: 0,
                         allTimeRP: 0,
+                        name: member.user.tag,
                     };
                 }
                 client.channels.cache.get("786471369201287200").send(`${member.user.tag} is on the call`);
@@ -197,6 +200,7 @@ function givePoints(){
                             money: 0,
                             last_message: 0,
                             allTimeRP: 0,
+                            name: member.user.tag,
                         };
                     }
                 
