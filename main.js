@@ -54,13 +54,13 @@ client.on('message', message => {
         if ((Math.floor(Math.random() * 100) + 1) <= 10){
             userStats.money += 10;
             message.react("💵");
-            message.channel.send(`<@${message.user.id}> has found 10` + " 💵.");
+            message.channel.send(`<@${message.author.id}> has found 10` + " 💵.");
             jsonfile.writeFileSync('stats.json', stats);
         } 
         if ((Math.floor(Math.random() * 100) + 1) === 100){
             userStats.money += 200;
             message.react("💎");
-            message.channel.send(`<@${message.user.id}> has found a gem.` + " (💎" + " = " + "200 💵)");
+            message.channel.send(`<@${message.author.id}> has found a gem.` + " (💎" + " = " + "200 💵)");
             jsonfile.writeFileSync('stats.json', stats);
         }
     }
