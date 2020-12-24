@@ -36,7 +36,7 @@ client.on('message', message => {
         return;
     }
     //message mining
-    /*
+    
     const guildStats = stats["738087569325293728"];
     if (message.author.id in guildStats === false){
         guildStats[message.author.id] = {
@@ -47,20 +47,23 @@ client.on('message', message => {
             allTimeRP: 0,
         }
     }
+
     const userStats = guildStats[message.author.id];
-    if ((Math.floor(Math.random() * 100) + 1) <= 10){
-        userStats.money += 10;
-        message.react("💵");
-        message.channel.send("found some cash!");
-        jsonfile.writeFileSync('stats.json', stats);
-    } 
-    if ((Math.floor(Math.random() * 100) + 1) === 100){
-        userStats.money += 200;
-        message.react("💎");
-        message.channel.send("found a gem!");
-        jsonfile.writeFileSync('stats.json', stats);
+    if (Date.now() - userStats.last_message > 30000){
+        userStats.last_message = Date.now();
+        if ((Math.floor(Math.random() * 100) + 1) <= 10){
+            userStats.money += 10;
+            message.react("💵");
+            message.channel.send(`<@${message.user.id}> has found 10` + " 💵.");
+            jsonfile.writeFileSync('stats.json', stats);
+        } 
+        if ((Math.floor(Math.random() * 100) + 1) === 100){
+            userStats.money += 200;
+            message.react("💎");
+            message.channel.send(`<@${message.user.id}> has found a gem.` + " (💎" + " = " + "200 💵)");
+            jsonfile.writeFileSync('stats.json', stats);
+        }
     }
-    */
     //end of message mining
 
     if (!message.content.startsWith(prefix) || message.author.bot) { return; }
