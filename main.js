@@ -41,7 +41,7 @@ client.on('message', message => {
     if (message.author.id in guildStats === false){
         guildStats[message.author.id] = {
             rp: 0,
-            reliability: 0  + "%",
+            reliability: 0,
             money: 0,
             last_message: 0,
             allTimeRP: 0,
@@ -49,18 +49,19 @@ client.on('message', message => {
     }
 
     const userStats = guildStats[message.author.id];
-    if (Date.now() - userStats.last_message > 30000){
+    if (Date.now() - userStats.last_message > 25000){
         userStats.last_message = Date.now();
+        jsonfile.writeFileSync('stats.json', stats);
         if ((Math.floor(Math.random() * 100) + 1) <= 10){
             userStats.money += 10;
             message.react("💵");
-            message.channel.send(`<@${message.author.id}> has found 10` + " 💵.");
+            //message.channel.send(`<@${message.author.id}> has found 10` + " 💵.");
             jsonfile.writeFileSync('stats.json', stats);
-        } 
-        if ((Math.floor(Math.random() * 100) + 1) === 100){
+        }
+        if ((Math.floor(Math.random() * 100) + 1) == 100){
             userStats.money += 200;
             message.react("💎");
-            message.channel.send(`<@${message.author.id}> has found a gem.` + " (💎" + " = " + "200 💵)");
+            message.channel.send(`<@${message.author.id}> has found a gem` + " 💎... " + "PS: 💎" + " = " + "200 💵");
             jsonfile.writeFileSync('stats.json', stats);
         }
     }
@@ -97,6 +98,9 @@ client.on('message', message => {
     }
     if (command == 'leaders'){
         client.commands.get('leaders').execute(message, args, Discord);
+    }
+    if (command == 'devmess'){
+        client.commands.get('devMess').execute(message, args, Discord);
     }
 });
 
