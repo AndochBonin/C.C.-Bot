@@ -71,6 +71,7 @@ client.on('message', message => {
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
+    const par = message.content.slice(prefix.length);
 
     if (command === 'ping'){
         client.commands.get('ping').execute(message, args);
@@ -97,10 +98,11 @@ client.on('message', message => {
         client.commands.get('stats').execute(message, args, Discord);
     }
     if (command == 'leaders'){
-        client.commands.get('leaders').execute(message, args, Discord);
+        //client.commands.get('leaders').execute(message, args, Discord);
+        message.channel.send("https://i.gifer.com/IlDK.gif");
     }
     if (command == 'devmess'){
-        client.commands.get('devMess').execute(message, args, Discord);
+        client.commands.get('devMess').execute(message, par, Discord);
     }
 });
 
