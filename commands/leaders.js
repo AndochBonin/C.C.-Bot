@@ -18,25 +18,47 @@ module.exports = {
         let stat;
         let title = "Leaderboard";
         
-        if (args[0] == " money" || args[0] == " m"){
-            stat = guildStats[Object.keys(guildStats)[size]].money;
+        //message.channel.send(args);
+        //return;
+        if (!args[0]){
+            message.channel.send("Specify a metric. (money, rp, reliability)");
+            return;
+        }
+        if (args[0] == "money" || args[0] == "m"){
             title = "Money Leaderboard";
-        }
-        if (args[0] == "rp"){
-            stat = guildStats[Object.keys(guildStats)[size]].allTimeRP;
-            title = "All Time RP Leaderboard";
-        }
-        else{
-            stat = guildStats[Object.keys(guildStats)[size]].money;
-            title = "Reliability Leaderboard";
-        }
-        for (person in guildStats){
-            let obj = {
-                name: guildStats[Object.keys(guildStats)[size]].name,
-                field: stat,
+            for (person in guildStats){
+                let obj = {
+                    name: guildStats[Object.keys(guildStats)[size]].name,
+                    field: guildStats[Object.keys(guildStats)[size]].money,
+                }
+                people[size] = obj;
+                size++;
             }
-            people[size] = obj;
-            size++;
+        }
+        else if (args[0] == "rp"){
+            title = "All Time RP Leaderboard";
+            for (person in guildStats){
+                let obj = {
+                    name: guildStats[Object.keys(guildStats)[size]].name,
+                    field: guildStats[Object.keys(guildStats)[size]].allTimeRP,
+                }
+                people[size] = obj;
+                size++;
+            }
+        } 
+        else if (args[0] == "reliability" || args[0] == "rb"){
+            title = "Reliability Leaderboard";
+            for (person in guildStats){
+                let obj = {
+                    name: guildStats[Object.keys(guildStats)[size]].name,
+                    field: guildStats[Object.keys(guildStats)[size]].reliability,
+                }
+                people[size] = obj;
+                size++;
+            }
+        } else {
+            message.channel.send("Invalid metric. (money, rp, reliability).");
+            return;
         }
         for (let i = 0; i < size; i++) {
             for (let j = 0; j < size - 1; j++) {

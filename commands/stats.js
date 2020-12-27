@@ -15,10 +15,13 @@ module.exports = {
         const guildStats = stats["738087569325293728"];
         
         let target = message.mentions.users.first();
+        if (!target && args[0]){
+            message.channel.send("No user found.");
+            return;
+        }
         if (!target){
             target = message.author;
         }
-        
 
         try{
             let memberTarget = message.guild.members.cache.get(target.id);
