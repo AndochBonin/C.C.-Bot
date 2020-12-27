@@ -16,11 +16,11 @@ module.exports = {
                 memberTarget.voice.setMute(false);
                 message.channel.send(`<@${memberTarget.user.id}> has been unsilenced.`);
             } else{
-                message.channel.send("No member found.");
+                message.channel.send("No user found.");
             }
         }
         catch (err){
-            message.channel.send("No member found.");
+            message.channel.send("No user found.");
             return;
         }
     }

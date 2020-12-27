@@ -52,13 +52,14 @@ client.on('message', message => {
     if (Date.now() - userStats.last_message > 25000){
         userStats.last_message = Date.now();
         jsonfile.writeFileSync('stats.json', stats);
-        if ((Math.floor(Math.random() * 100) + 1) <= 10){
+        let moneyChance = Math.floor(Math.random() * 100) + 1;
+        if (moneyChance <= 10){
             userStats.money += 10;
             message.react("💵");
             //message.channel.send(`<@${message.author.id}> has found 10` + " 💵.");
             jsonfile.writeFileSync('stats.json', stats);
         }
-        if ((Math.floor(Math.random() * 100) + 1) == 100){
+        if ((moneyChance) == 100){
             userStats.money += 200;
             message.react("💎");
             message.channel.send(`<@${message.author.id}> has found a gem` + " 💎... " + "PS: 💎" + " = " + "200 💵");
@@ -98,8 +99,8 @@ client.on('message', message => {
         client.commands.get('stats').execute(message, args, Discord);
     }
     if (command == 'leaders'){
-        //client.commands.get('leaders').execute(message, args, Discord);
-        message.channel.send("https://i.gifer.com/IlDK.gif");
+        client.commands.get('leaders').execute(message, args, Discord);
+        //message.channel.send("https://i.gifer.com/IlDK.gif");
     }
     if (command == 'devmess'){
         client.commands.get('devMess').execute(message, par, Discord);

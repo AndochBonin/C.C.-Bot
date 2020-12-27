@@ -18,11 +18,11 @@ module.exports = {
                 memberTarget.voice.setMute(true);
                 message.channel.send(`<@${memberTarget.user.id}> has been silenced.`);
             } else{
-                message.channel.send("No member found.");
+                message.channel.send("No user found.");
             }
         }
         catch (err){
-            message.channel.send("No member found.");
+            message.channel.send("No user found.");
             return;
         }
     }
