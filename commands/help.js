@@ -16,6 +16,7 @@ module.exports = {
         .addFields(
             {name: '!', value: 'this is the prefix before every command'},
             {name: 'clear', value: 'clears a specified number of messages'},
+            {name: 'leaders (m, rp, rb)', value: "displays the top 5 users based on the metric provided"},
             {name: 'mute', value: 'mutes the first person who is tagged'},
             {name: 'muteAll', value: 'mutes everyone on the voice channel'},
             {name: 'ping', value: 'sends the bots ping'},

@@ -4,7 +4,7 @@ const { DiscordAPIError } = require('discord.js');
 
 module.exports = {
     name: 'leaders',
-    description: "displays the leaderboard sorted by the argument provided",
+    description: "displays the top 5 users based on the metric provided",
     execute(message, args, Discord) {
 
         var stats = {};
@@ -73,11 +73,11 @@ module.exports = {
         .setColor("#800080")
         .setTitle(title)
         .addFields(
-            {name: "1st - " + "_" + people[0].name + "_", value: "**----- " + people[0].field + "**"},
-            {name: "2nd - " + "_" + people[1].name + "_", value: "**----- " + people[1].field + "**"},
-            {name: "3rd - " + "_" + people[2].name + "_", value: "**----- " + people[2].field + "**"},
-            {name: "4th - " + "_" + people[3].name + "_", value: "**----- " + people[3].field + "**"},
-            {name: "5th - " + "_" + people[4].name + "_", value: "**----- " + people[4].field + "**"},
+            {name: "1st - " + people[0].name, value: "**----- " + people[0].field + "**"},
+            {name: "2nd - " + people[1].name, value: "**----- " + people[1].field + "**"},
+            {name: "3rd - " + people[2].name, value: "**----- " + people[2].field + "**"},
+            {name: "4th - " + people[3].name, value: "**----- " + people[3].field + "**"},
+            {name: "5th - " + people[4].name, value: "**----- " + people[4].field + "**"},
         )
         message.channel.send(leadersEmbed);
     }

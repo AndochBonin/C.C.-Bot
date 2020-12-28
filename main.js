@@ -38,7 +38,7 @@ client.on('message', message => {
     //message mining
     
     const guildStats = stats["738087569325293728"];
-    if (message.author.id in guildStats === false){
+    if (message.author.id in guildStats === false && message.guild.id === "738087569325293728"){
         guildStats[message.author.id] = {
             rp: 0,
             reliability: 0,
@@ -49,7 +49,7 @@ client.on('message', message => {
     }
 
     const userStats = guildStats[message.author.id];
-    if (Date.now() - userStats.last_message > 25000){
+    if (Date.now() - userStats.last_message > 25000 && message.guild.id === "738087569325293728"){
         userStats.last_message = Date.now();
         jsonfile.writeFileSync('stats.json', stats);
         let moneyChance = Math.floor(Math.random() * 100) + 1;
@@ -60,9 +60,9 @@ client.on('message', message => {
             jsonfile.writeFileSync('stats.json', stats);
         }
         if ((moneyChance) == 100){
-            userStats.money += 200;
+            userStats.money += 100;
             message.react("💎");
-            message.channel.send(`<@${message.author.id}> has found a gem` + " 💎... " + "PS: 💎" + " = " + "200 💵");
+            message.channel.send(`<@${message.author.id}> has found a gem` + " 💎... " + "PS: 💎" + " = " + "100 💵");
             jsonfile.writeFileSync('stats.json', stats);
         }
     }
@@ -105,6 +105,11 @@ client.on('message', message => {
     if (command == 'devmess'){
         client.commands.get('devMess').execute(message, par, Discord);
     }
+    /*
+    if (command == 'shop'){
+        client.commands.get('shop').execute(message, args, Discord);
+    }
+    */
 });
 
 client.on('ready', () => {
@@ -123,10 +128,13 @@ client.on('ready', () => {
         setInterval(function(){
             dayRP = 0;
             let newFullDate = new Date();
+            if (newFullDate.getDay() == 0){
+                setZero();
+            }
             totalRP = newFullDate.getDay() * 200 + 200;
             giveEarlyPoints();
             client.channels.cache.get("786471369201287200").send("started again");
-            client.channels.cache.get("786471369201287200").send(dayRP);
+            //client.channels.cache.get("786471369201287200").send(dayRP);
             givePoints();
         }, 24 * 60 * 60 * 1000)
         
