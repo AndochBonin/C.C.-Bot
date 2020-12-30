@@ -35,6 +35,7 @@ client.on('message', message => {
     if (message.author.id == client.user.id || message.author.bot){
         return;
     }
+
     //message mining
     
     const guildStats = stats["738087569325293728"];
@@ -45,22 +46,36 @@ client.on('message', message => {
             money: 0,
             last_message: 0,
             allTimeRP: 0,
+            name: message.author.tag,
+            daily: 0,
+            geass: "",
         }
     }
 
     const userStats = guildStats[message.author.id];
-    if (Date.now() - userStats.last_message > 25000 && message.guild.id === "738087569325293728"){
+
+    if (totalRP != 0){
+        userStats.reliability = Math.round(userStats.rp / totalRP * 100);
+    } else {
+        userStats.reliability = 0;
+    }
+
+    const acceptedChannels = ["738087786342776882", "774350686997315604", "738088061874995210", "772063969556299806"];
+
+    if (Date.now() - userStats.last_message > 25000 && (message.channel.id in acceptedChannels) && userStats.daily < 100){
         userStats.last_message = Date.now();
         jsonfile.writeFileSync('stats.json', stats);
         let moneyChance = Math.floor(Math.random() * 100) + 1;
         if (moneyChance <= 10){
             userStats.money += 10;
+            userStats.daily += 10;
             message.react("💵");
             //message.channel.send(`<@${message.author.id}> has found 10` + " 💵.");
             jsonfile.writeFileSync('stats.json', stats);
         }
         if ((moneyChance) == 100){
             userStats.money += 100;
+            userStats.daily += 100;
             message.react("💎");
             message.channel.send(`<@${message.author.id}> has found a gem` + " 💎... " + "PS: 💎" + " = " + "100 💵");
             jsonfile.writeFileSync('stats.json', stats);
@@ -122,6 +137,7 @@ client.on('ready', () => {
         totalRP = fullDate.getDay() * 200 + 200;
         dayRP = 0;
         client.channels.cache.get("786471369201287200").send("started");
+        resetLimit();
         giveEarlyPoints();
         givePoints();
 
@@ -132,6 +148,7 @@ client.on('ready', () => {
                 setZero();
             }
             totalRP = newFullDate.getDay() * 200 + 200;
+            resetLimit();
             giveEarlyPoints();
             client.channels.cache.get("786471369201287200").send("started again");
             //client.channels.cache.get("786471369201287200").send(dayRP);
@@ -175,6 +192,8 @@ function giveEarlyPoints(){
                         last_message: 0,
                         allTimeRP: 0,
                         name: member.user.tag,
+                        daily: 0,
+                        geass: "",
                     };
                 }
                 client.channels.cache.get("786471369201287200").send(`${member.user.tag} is on the call`);
@@ -182,7 +201,7 @@ function giveEarlyPoints(){
                 userStats.rp += 20;
                 userStats.allTimeRP += 20;
                 if (totalRP != 0){
-                    userStats.reliability = userStats.rp / totalRP * 100;
+                    userStats.reliability = Math.round(userStats.rp / totalRP * 100);
                 } else {
                     userStats.reliability = 0;
                 }
@@ -219,13 +238,15 @@ function givePoints(){
                             last_message: 0,
                             allTimeRP: 0,
                             name: member.user.tag,
+                            daily: 0,
+                            geass: "",
                         };
                     }
                 
                 const userStats = guildStats[member.user.id];
                 userStats.rp += 5;
                 userStats.allTimeRP += 5;
-                userStats.reliability = userStats.rp / totalRP * 100;
+                userStats.reliability = Math.round(userStats.rp / totalRP * 100);
 
                 }
             }
@@ -256,13 +277,39 @@ function setZero(){
     const guildStats = stats["738087569325293728"];
     let i = 0;
         for (const person in guildStats){
-            guildStats[Object.keys(guildStats)[i]].money += Math.floor(guildStats[Object.keys(guildStats)[i]].rp / 10);
+            guildStats[Object.keys(guildStats)[i]].money += Math.floor(guildStats[Object.keys(guildStats)[i]].rp / 2);
             guildStats[Object.keys(guildStats)[i]].rp = 0;
             guildStats[Object.keys(guildStats)[i]].reliability = 0;
             i++;
         }
         //message.channel.send("all rp and reliability set to zero, money also added.");
         jsonfile.writeFileSync('stats.json', stats);
+}
+
+function resetLimit(){
+    if ("738087569325293728" in stats === false){
+        stats["738087569325293728"] = {};
+    }
+
+    const guildStats = stats["738087569325293728"];
+    let i = 0;
+        for (const person in guildStats){
+            guildStats[Object.keys(guildStats)[i]].daily = 0;
+            i++;
+        }
+        //message.channel.send("set daily limit to zero.");
+        jsonfile.writeFileSync('stats.json', stats);
+}
+
+function resetGeass(){
+    let roleIDs = ["793825545770762250","793825649383047199", "793825705574137876", "793808737638547487", "793808632634408981",
+"793808368497852456", "793809137876205568", "793809095261290506", "793808990723112960", "793808320044466236"];
+
+    for (i in roleIDs){
+        const role = message.guild.roles.cache.get(i);
+        
+    }
+    
 }
 
 client.login('Nzg2NDEwMjg2Njk2NDk3MTgz.X9F_pw.5oGg5Uv0qNUasjMxNiBoJbNlrsQ');

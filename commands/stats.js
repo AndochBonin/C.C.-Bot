@@ -1,6 +1,5 @@
 const jsonfile = require('jsonfile');
 const fs = require('fs');
-const { DiscordAPIError } = require('discord.js');
 
 module.exports = {
     name: 'stats',
@@ -34,7 +33,8 @@ module.exports = {
                     {name: "RP", value: guildStats[target.id].rp},
                     {name: "Reliability", value: guildStats[target.id].reliability + "%"},
                     {name: "All Time RP", value: guildStats[target.id].allTimeRP},
-                    {name: "Account Balance", value: guildStats[target.id].money + " :dollar:"}
+                    {name: "Account Balance", value: guildStats[target.id].money + " :dollar:"},
+                    {name: "Geass/Abilities", value: guildStats[target.id].geass},
                 )
                 .setImage(target.avatarURL())
 
