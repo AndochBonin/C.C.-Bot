@@ -26,6 +26,10 @@ module.exports = {
             let memberTarget = message.guild.members.cache.get(target.id);
 
             if (target.id in guildStats){
+                let geass = "none"
+                if (guildStats[target.id].geass != "" && target.id != "391199878015090689" && target.id != "718369587325829160"){
+                    geass = guildStats[target.id].geass;
+                }
                 const statsEmbed = new Discord.MessageEmbed()
                 .setColor("#800080")
                 .setTitle("Stats for " + memberTarget.user.tag)
@@ -34,7 +38,6 @@ module.exports = {
                     {name: "Reliability", value: guildStats[target.id].reliability + "%"},
                     {name: "All Time RP", value: guildStats[target.id].allTimeRP},
                     {name: "Account Balance", value: guildStats[target.id].money + " :dollar:"},
-                    {name: "Geass/Abilities", value: guildStats[target.id].geass},
                 )
                 .setImage(target.avatarURL())
 

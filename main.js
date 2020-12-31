@@ -12,6 +12,8 @@ const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith(
 
 let totalRP = 0;
 let dayRP = 0;
+let today = new Date().getDay();
+totalRP = 200 * today + 200;
 
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
@@ -56,6 +58,7 @@ client.on('message', message => {
 
     if (totalRP != 0){
         userStats.reliability = Math.round(userStats.rp / totalRP * 100);
+        jsonfile.writeFileSync('stats.json', stats);
     } else {
         userStats.reliability = 0;
     }
@@ -120,11 +123,10 @@ client.on('message', message => {
     if (command == 'devmess'){
         client.commands.get('devMess').execute(message, par, Discord);
     }
-    /*
+    
     if (command == 'shop'){
         client.commands.get('shop').execute(message, args, Discord);
     }
-    */
 });
 
 client.on('ready', () => {
@@ -133,6 +135,7 @@ client.on('ready', () => {
         let fullDate = new Date();
         if (fullDate.getDay() == 0){
             setZero();
+            resetGeass();
         }
         totalRP = fullDate.getDay() * 200 + 200;
         dayRP = 0;
@@ -302,13 +305,55 @@ function resetLimit(){
 }
 
 function resetGeass(){
-    let roleIDs = ["793825545770762250","793825649383047199", "793825705574137876", "793808737638547487", "793808632634408981",
-"793808368497852456", "793809137876205568", "793809095261290506", "793808990723112960", "793808320044466236"];
-
-    for (i in roleIDs){
-        const role = message.guild.roles.cache.get(i);
-        
+    let roleIDs = ["steal1","steal2","steal3","protection1","protection2","protection3","fortune"];
+    let defRoleIDs = ["mute","disconnect","clear"];
+    let i = 0;
+    let j = 0;
+    let guild = client.guilds.cache.get("738087569325293728");
+    //delete roles
+    
+    for (person in roleIDs){
+        guild.roles.cache.find(role => role.name === roleIDs[i]).delete();
+        i++;
     }
+    for (person in defRoleIDs){
+        guild.roles.cache.find(role => role.name === defRoleIDs[j]).delete();
+        j++;
+    }
+    
+    //create roles
+    i = 0;
+    for (person in roleIDs){
+        guild.roles.create({
+            data: {
+              name: roleIDs[i],
+              color: 'GREY',
+              permissions: [],
+            },
+        })
+        i++;
+    }
+    guild.roles.create({
+        data: {
+          name: 'mute',
+          color: 'GREY',
+          permissions: ['MUTE_MEMBERS'],
+        },
+    })
+    guild.roles.create({
+        data: {
+          name: 'clear',
+          color: 'GREY',
+          permissions: ['MANAGE_MESSAGES'],
+        },
+    })
+    guild.roles.create({
+        data: {
+          name: 'disconnect',
+          color: 'GREY',
+          permissions: ['MOVE_MEMBERS'],
+        },
+    })
     
 }
 

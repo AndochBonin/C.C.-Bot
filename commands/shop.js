@@ -8,17 +8,18 @@ module.exports = {
     execute(message, args, Discord){
         const shop = new Discord.MessageEmbed()
         .setColor("#FFFF00")
-        .setTitle("ROG Marketplace")
-        .setFooter("no refunds. all purchases (excluding nitro) will be repossessed every sunday.")
+        .setTitle("ROG Marketplace\n___")
+        .setFooter("no refunds. all purchases (excluding nitro) will be repossessed every sunday. prices are subject to change.")
         .addFields(
             {name: "Geass/Abilities", value: "___\n "},
-            {name: "$500     mute", value: "geass user will be able to silence anyone"},
-            {name: "$500     clear", value: "geass user will be able to clear messages"},
-            {name: "$500     disconnect", value: "geass user will be able to disconnect people from vc"},
-            {name: "$75      fortune", value: "geass user will gain more 30% more money from finding gems and dollars" },
-            {name: "$300+    steal", value: "geass user will be able to steal from those without adequate protection. comes in three forms: steal1 - $300, steal2 - $500, steal3 - $750. higher numbers indicate ability to bypass protection"},
-            {name: "$300+    protection", value: "geass user will be protected from thieves. comes in three forms: protection1 - $300, protection2 - $500, protection3 - $750. higher numbers indicate ability to defend ones self\n___"},
-            {name: "Affiliated Services", value: "___\n "},
+            {name: "mute - $500", value: "geass user will be able to silence anyone"},
+            {name: "clear - $500", value: "geass user will be able to clear messages"},
+            {name: "disconnect - $500", value: "geass user will be able to disconnect people from vc"},
+            {name: "fortune - $75", value: "geass user will gain 30% more money from finding gems and dollars" },
+            {name: "steal - $300+", value: "geass user will be able to steal from those without adequate protection. comes in three forms: steal1 - $300, steal2 - $500, steal3 - $750. higher numbers indicate ability to bypass protection"},
+            {name: "protection - $300+", value: "geass user will be protected from thieves. comes in three forms: protection1 - $300, protection2 - $500, protection3 - $750. higher numbers indicate ability to defend ones self\n___"},
+            {name: "Affiliated Services", value: "\n___"},
+            {name: "Discord Nitro - $100K", value: "user will be gifted discord nitro from C.C."},
             {name: "Mecha-Senku", value: "Unreleased"},
         )
 
@@ -39,6 +40,8 @@ module.exports = {
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
                 if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
                 userStats.money -= 500;
+                jsonfile.writeFileSync('stats.json', stats);
+                message.channel.send("You just bought " + args[0] + "!");
             } 
             else {
                 message.channel.send("You cannot afford this item.");
@@ -49,6 +52,8 @@ module.exports = {
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
                 if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
                 userStats.money -= 75;
+                jsonfile.writeFileSync('stats.json', stats);
+                message.channel.send("You just bought " + args[0] + "!");
             } 
             else {
                 message.channel.send("You cannot afford this item.");
@@ -59,6 +64,8 @@ module.exports = {
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
                 if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
                 userStats.money -= 300;
+                jsonfile.writeFileSync('stats.json', stats);
+                message.channel.send("You just bought " + args[0] + "!");
             } 
             else {
                 message.channel.send("You cannot afford this item.");
@@ -69,6 +76,8 @@ module.exports = {
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
                 if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
                 userStats.money -= 500;
+                jsonfile.writeFileSync('stats.json', stats);
+                message.channel.send("You just bought " + args[0] + "!");
             } 
             else {
                 message.channel.send("You cannot afford this item.");
@@ -79,6 +88,8 @@ module.exports = {
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
                 if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
                 userStats.money -= 750;
+                jsonfile.writeFileSync('stats.json', stats);
+                message.channel.send("You just bought " + args[0] + "!");
             } 
             else {
                 message.channel.send("You cannot afford this item.");
