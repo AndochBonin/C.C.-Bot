@@ -53,14 +53,14 @@ client.on('message', message => {
             geass: "",
         }
     }
-
+    stats = jsonfile.readFileSync('stats.json');
     const userStats = guildStats[message.author.id];
-
     if (totalRP != 0){
         userStats.reliability = Math.round(userStats.rp / totalRP * 100);
         jsonfile.writeFileSync('stats.json', stats);
     } else {
         userStats.reliability = 0;
+        jsonfile.writeFileSync('stats.json', stats);
     }
 
     const acceptedChannels = ["738087786342776882", "774350686997315604", "738088061874995210", "772063969556299806"];
@@ -123,9 +123,14 @@ client.on('message', message => {
     if (command == 'devmess'){
         client.commands.get('devMess').execute(message, par, Discord);
     }
-    
     if (command == 'shop'){
         client.commands.get('shop').execute(message, args, Discord);
+    }
+    if (command == 'steal'){
+        client.commands.get('steal').execute(message, args);
+    }
+    if (command == 'send'){
+        client.commands.get('send').execute(message, args);
     }
 });
 
@@ -149,6 +154,7 @@ client.on('ready', () => {
             let newFullDate = new Date();
             if (newFullDate.getDay() == 0){
                 setZero();
+                resetGeass();
             }
             totalRP = newFullDate.getDay() * 200 + 200;
             resetLimit();

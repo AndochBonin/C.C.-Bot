@@ -1,6 +1,5 @@
 const jsonfile = require('jsonfile');
 const fs = require('fs');
-const { setMaxListeners, send } = require('process');
 
 module.exports = {
     name: 'shop',
@@ -23,11 +22,11 @@ module.exports = {
             {name: "Mecha-Senku", value: "Unreleased"},
         )
 
-        var stats = {};
+        var data = {};
         if (fs.existsSync('stats.json')){
-            stats = jsonfile.readFileSync('stats.json');
+            data = jsonfile.readFileSync('stats.json');
         }
-        const guildStats = stats["738087569325293728"];
+        const guildStats = data["738087569325293728"];
         const userStats = guildStats[message.author.id];
 
         if(!args[0]){
@@ -40,7 +39,7 @@ module.exports = {
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
                 if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
                 userStats.money -= 500;
-                jsonfile.writeFileSync('stats.json', stats);
+                jsonfile.writeFileSync('stats.json', data);
                 message.channel.send("You just bought " + args[0] + "!");
             } 
             else {
@@ -51,8 +50,10 @@ module.exports = {
             if (userStats.money >= 75){
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
                 if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
+                message.channel.send(userStats.money);
                 userStats.money -= 75;
-                jsonfile.writeFileSync('stats.json', stats);
+                message.channel.send(userStats.money);
+                jsonfile.writeFileSync('stats.json', data);
                 message.channel.send("You just bought " + args[0] + "!");
             } 
             else {
@@ -64,7 +65,7 @@ module.exports = {
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
                 if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
                 userStats.money -= 300;
-                jsonfile.writeFileSync('stats.json', stats);
+                jsonfile.writeFileSync('stats.json', data);
                 message.channel.send("You just bought " + args[0] + "!");
             } 
             else {
@@ -76,7 +77,7 @@ module.exports = {
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
                 if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
                 userStats.money -= 500;
-                jsonfile.writeFileSync('stats.json', stats);
+                jsonfile.writeFileSync('stats.json', data);
                 message.channel.send("You just bought " + args[0] + "!");
             } 
             else {
@@ -88,7 +89,7 @@ module.exports = {
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
                 if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
                 userStats.money -= 750;
-                jsonfile.writeFileSync('stats.json', stats);
+                jsonfile.writeFileSync('stats.json', data);
                 message.channel.send("You just bought " + args[0] + "!");
             } 
             else {
@@ -98,5 +99,6 @@ module.exports = {
         else {
             message.channel.send("We do not have this item in the shop.");
         }
+        //jsonfile.writeFile('stats.json', data);
     }
 }
