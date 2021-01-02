@@ -62,6 +62,7 @@ client.on('message', message => {
         userStats.reliability = 0;
         jsonfile.writeFileSync('stats.json', stats);
     }
+    stats = jsonfile.readFileSync('stats.json');
 
     const acceptedChannels = ["738087786342776882", "774350686997315604", "738088061874995210", "772063969556299806"];
 
