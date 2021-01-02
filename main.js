@@ -140,6 +140,9 @@ client.on('message', message => {
     if (command == 'send'){
         client.commands.get('send').execute(message, args);
     }
+    if (command == 'sendpic'){
+        client.commands.get('sendPic').execute(message, args);
+    }
 });
 
 client.on('ready', () => {

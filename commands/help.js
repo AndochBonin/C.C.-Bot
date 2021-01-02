@@ -3,7 +3,7 @@ module.exports = {
     description: "displays all commands C.C. can do",
     execute(message, args, Discord){
 
-        if (message.member.user.id === "391199878015090689"){
+        if (message.member.user.id === "391199878015090680"){
             const attachment = 'https://i.pinimg.com/originals/18/41/8d/18418da444b95b0b0e1e1ee166e915e9.gif';
             message.channel.send("You don't need any help... you are *Lelouch* remember:smiling_face_with_3_hearts:");
             message.channel.send(attachment);
@@ -21,7 +21,7 @@ module.exports = {
             {name: 'muteAll', value: 'mutes everyone on the voice channel'},
             {name: 'ping', value: 'sends the bots ping'},
             {name: 'send', value: 'sends the amount chosen to the first person tagged'},
-            {name: 'sendPic', value: 'sends picture of C.C. depending on who you are'},
+            {name: 'sendPic (nude)', value: 'sends picture of C.C. depending on who you are'},
             {name: 'shop', value: 'displays the items in the shop if no item is chosen'},
             {name: 'stats', value: 'displays the stats of the first person tagged'},
             {name: 'steal', value: 'steals the amount chosen from the first person tagged'},
