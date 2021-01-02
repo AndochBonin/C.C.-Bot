@@ -64,6 +64,7 @@ client.on('message', message => {
     }
     stats = jsonfile.readFileSync('stats.json');
 
+    //message mining
     const acceptedChannels = ["738087786342776882", "774350686997315604", "738088061874995210", "772063969556299806"];
 
     if (Date.now() - userStats.last_message > 25000 && (message.channel.id in acceptedChannels) && userStats.daily < 100){
@@ -71,6 +72,9 @@ client.on('message', message => {
         jsonfile.writeFileSync('stats.json', stats);
         let moneyChance = Math.floor(Math.random() * 100) + 1;
         if (moneyChance <= 10){
+            if(message.member.roles.cache.find(r => r.name === "fortune")){
+                userStats.money += 5;
+            }
             userStats.money += 10;
             userStats.daily += 10;
             message.react("💵");
@@ -78,6 +82,9 @@ client.on('message', message => {
             jsonfile.writeFileSync('stats.json', stats);
         }
         if ((moneyChance) == 100){
+            if(message.member.roles.cache.find(r => r.name === "fortune")){
+                userStats.money += 50;
+            }
             userStats.money += 100;
             userStats.daily += 100;
             message.react("💎");
