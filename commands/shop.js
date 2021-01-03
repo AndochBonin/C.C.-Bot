@@ -50,9 +50,9 @@ module.exports = {
             if (userStats.money >= 75){
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
                 if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
-                message.channel.send(userStats.money);
+                //message.channel.send(userStats.money);
                 userStats.money -= 75;
-                message.channel.send(userStats.money);
+                //message.channel.send(userStats.money);
                 jsonfile.writeFileSync('stats.json', data);
                 message.channel.send("You just bought " + args[0] + "!");
             } 

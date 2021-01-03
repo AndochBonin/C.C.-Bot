@@ -38,7 +38,10 @@ client.on('message', message => {
         return;
     }
 
-    //message mining
+    stats = {};
+    if (fs.existsSync('stats.json')){
+        stats = jsonfile.readFileSync('stats.json');
+    }
     
     const guildStats = stats["738087569325293728"];
     if (message.author.id in guildStats === false && message.guild.id === "738087569325293728"){
@@ -53,24 +56,18 @@ client.on('message', message => {
             geass: "",
         }
     }
-    stats = jsonfile.readFileSync('stats.json');
     const userStats = guildStats[message.author.id];
-    if (totalRP != 0){
-        userStats.reliability = Math.round(userStats.rp / totalRP * 100);
-        jsonfile.writeFileSync('stats.json', stats);
-    } else {
-        userStats.reliability = 0;
-        jsonfile.writeFileSync('stats.json', stats);
-    }
-    stats = jsonfile.readFileSync('stats.json');
-
     //message mining
     const acceptedChannels = ["738087786342776882", "774350686997315604", "738088061874995210", "772063969556299806"];
 
-    if (Date.now() - userStats.last_message > 25000 && (message.channel.id in acceptedChannels) && userStats.daily < 100){
+    if (Date.now() - userStats.last_message >= 25000 && acceptedChannels.includes(message.channel.id) && userStats.daily < 100){
+        //client.channels.cache.get("786471369201287200").send("Date.now() = " + Date.now());
+        //client.channels.cache.get("786471369201287200").send("last message = " + userStats.last_message);
+        //client.channels.cache.get("786471369201287200").send("Difference in seconds = " + (Date.now() - userStats.last_message)/1000);
         userStats.last_message = Date.now();
         jsonfile.writeFileSync('stats.json', stats);
         let moneyChance = Math.floor(Math.random() * 100) + 1;
+        client.channels.cache.get("786471369201287200").send(moneyChance);
         if (moneyChance <= 10){
             if(message.member.roles.cache.find(r => r.name === "fortune")){
                 userStats.money += 5;
@@ -93,6 +90,8 @@ client.on('message', message => {
         }
     }
     //end of message mining
+
+
 
     if (!message.content.startsWith(prefix) || message.author.bot) { return; }
 
@@ -143,6 +142,17 @@ client.on('message', message => {
     if (command == 'sendpic'){
         client.commands.get('sendPic').execute(message, args);
     }
+
+    stats = jsonfile.readFileSync('stats.json');
+    //const userStats = guildStats[message.author.id];
+    if (totalRP != 0){
+        userStats.reliability = Math.round(userStats.rp / totalRP * 100);
+        jsonfile.writeFileSync('stats.json', stats);
+    } else {
+        userStats.reliability = 0;
+        jsonfile.writeFileSync('stats.json', stats);
+    }
+    //stats = jsonfile.readFileSync('stats.json');
 });
 
 client.on('ready', () => {
