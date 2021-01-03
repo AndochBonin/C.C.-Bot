@@ -59,6 +59,10 @@ client.on('message', message => {
     const userStats = guildStats[message.author.id];
     //message mining
     const acceptedChannels = ["738087786342776882", "774350686997315604", "738088061874995210", "772063969556299806"];
+    
+    //client.channels.cache.get("786471369201287200").send("Date.now() = " + Date.now());
+    //client.channels.cache.get("786471369201287200").send("last message = " + userStats.last_message);
+    //client.channels.cache.get("786471369201287200").send("Difference in seconds = " + (Date.now() - userStats.last_message)/1000);
 
     if (Date.now() - userStats.last_message >= 25000 && acceptedChannels.includes(message.channel.id) && userStats.daily < 100){
         //client.channels.cache.get("786471369201287200").send("Date.now() = " + Date.now());
@@ -78,7 +82,7 @@ client.on('message', message => {
             //message.channel.send(`<@${message.author.id}> has found 10` + " 💵.");
             jsonfile.writeFileSync('stats.json', stats);
         }
-        if ((moneyChance) == 100){
+        if (moneyChance == 100){
             if(message.member.roles.cache.find(r => r.name === "fortune")){
                 userStats.money += 50;
             }
@@ -142,6 +146,10 @@ client.on('message', message => {
     if (command == 'sendpic'){
         client.commands.get('sendPic').execute(message, args);
     }
+    if (command == "listemojis") {
+        const emojiList = message.guild.emojis.cache.map(emoji => emoji.toString()).join(" ");
+        message.channel.send(emojiList);
+      }
 
     stats = jsonfile.readFileSync('stats.json');
     //const userStats = guildStats[message.author.id];

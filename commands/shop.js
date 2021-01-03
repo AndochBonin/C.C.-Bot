@@ -14,7 +14,7 @@ module.exports = {
             {name: "mute - $500", value: "geass user will be able to silence anyone"},
             {name: "clear - $500", value: "geass user will be able to clear messages"},
             {name: "disconnect - $500", value: "geass user will be able to disconnect people from vc"},
-            {name: "fortune - $75", value: "geass user will gain 30% more money from finding gems and dollars" },
+            {name: "fortune - $50", value: "geass user will gain 30% more money from finding gems and dollars" },
             {name: "steal - $300+", value: "geass user will be able to steal from those without adequate protection. comes in three forms: steal1 - $300, steal2 - $500, steal3 - $750. higher numbers indicate ability to bypass protection"},
             {name: "protection - $300+", value: "geass user will be protected from thieves. comes in three forms: protection1 - $300, protection2 - $500, protection3 - $750. higher numbers indicate ability to defend ones self\n___"},
             {name: "Affiliated Services", value: "\n___"},
@@ -34,6 +34,11 @@ module.exports = {
             return;
         }
 
+        if (message.member.roles.cache.find(r => r.name === args[0])){
+            message.channel.send("You already have this geass.");
+            return;
+        }
+
         if(args[0] == "disconnect" || args[0] == "mute" || args[0] == "clear") {
             if (userStats.money >= 500){
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
@@ -47,11 +52,11 @@ module.exports = {
             }
         }
         else if(args[0] == "fortune"){
-            if (userStats.money >= 75){
+            if (userStats.money >= 50){
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
                 if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
                 //message.channel.send(userStats.money);
-                userStats.money -= 75;
+                userStats.money -= 50;
                 //message.channel.send(userStats.money);
                 jsonfile.writeFileSync('stats.json', data);
                 message.channel.send("You just bought " + args[0] + "!");

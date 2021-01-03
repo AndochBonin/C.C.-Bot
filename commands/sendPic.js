@@ -18,7 +18,12 @@ module.exports = {
     "https://lh3.googleusercontent.com/proxy/TCCi0bNNi1pwsMwqxN7S6nRsBFJD3LarOSYMT1A37FoC2d8hT6Fr51UCgG5GEdVT_i73n0azDjNodtQIUqfBjgag-QuM2B0Tk9fSKn3nECtXRr-mgg",
 "https://tse2.mm.bing.net/th?id=OIP.2Gg74W0ifw012c6Lt2iPCgHaJ4&pid=15.1",
 "https://ndlc.info/upload/ddccda3fc9fd9207333c55d6dadd2f5d.jpg",
-"https://liliy.net/blog/wp-content/uploads/2008/06/lelouch-kallen-e1317870479104.png"];
+"https://liliy.net/blog/wp-content/uploads/2008/06/lelouch-kallen-e1317870479104.png",
+"https://i.redd.it/2y027e8tpr031.jpg",
+"https://i7a8a9b6.ssl.hwcdn.net/toons-empire.com/upload/originals/06/1/6/0616489bdf0001591562e2ffd28b5e31.jpg",
+"https://freepornpicss.com/xxx/code-geass-kallen-and-cc-hentai.jpg",
+"https://cdnio.luscious.net/Minami16/303026/cc-and-kallen-5_01C362H96F3VWCXJ0QPSKAJA5W.1024x0.jpg",
+"https://img2.gelbooru.com/samples/53/14/sample_531433786e3bb3d9647cb6ac7a71a177.jpg"];
 
         let reject = ["https://www.pngitem.com/pimgs/m/406-4066534_cc-code-geass-folder-icon-hd-png-download.png",
         "https://1.bp.blogspot.com/-jkKaYq8_3bU/U-WjYuIPwcI/AAAAAAAAGgM/2gNjvjzF-D0/s1600/4-4753-14610-OZCCodeGeassLelouchoftheRebellionEpisode25ZeroFINALmkvsnapshot221020100407234406jpg-620x.jpg",
@@ -31,7 +36,7 @@ module.exports = {
         }
         else if (args[0] == 'nude'){
             if (message.author.id == "391199878015090689"){
-                let randNum = Math.floor(Math.random() * 6);
+                let randNum = Math.floor(Math.random() * 11);
                 if (randNum == 5){
                     message.channel.send(ecchi[randNum]);
                     message.channel.send("why don't you ask Kallen instead.");

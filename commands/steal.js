@@ -10,6 +10,11 @@ module.exports = {
         message.member.roles.cache.find(r => r.name === "steal2") || 
         message.member.roles.cache.find(r => r.name === "steal3")) 
         {
+            let today = new Date().getDay();
+            if (today == 0){
+                message.channel.send("No fan fooling on Sunday.");
+                return;
+            }
             var stats = {};
             if (fs.existsSync('stats.json')){
                 stats = jsonfile.readFileSync('stats.json');
@@ -28,6 +33,10 @@ module.exports = {
 
             if (!args[0] || isNaN(args[0])){
                 message.channel.send("Invalid Format.");
+                return;
+            }
+            if (target.id == message.author.id){
+                message.channel.send("You cannot steal from yourself.");
                 return;
             }
             if (member.roles.cache.find(r => r.name === "protection1")){

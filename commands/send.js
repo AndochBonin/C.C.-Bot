@@ -26,6 +26,10 @@ module.exports = {
                 message.channel.send("Invalid Format.");
                 return;
             }
+            if (target.id == message.author.id){
+                message.channel.send("You cannot send to yourself.");
+                return;
+            }
 
             let amount = Number(args[0]);
 
