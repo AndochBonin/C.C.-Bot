@@ -17,6 +17,7 @@ module.exports = {
             {name: '!', value: 'this is the prefix before every command'},
             {name: 'clear', value: 'clears a specified number of messages'},
             {name: 'leaders (m, rp, rb)', value: "displays the top 5 users based on the metric provided"},
+            {name: 'listEmojis', value: 'lists all the server emojis'},
             {name: 'mute', value: 'mutes the first person who is tagged'},
             {name: 'muteAll', value: 'mutes everyone on the voice channel'},
             {name: 'ping', value: 'sends the bots ping'},
@@ -31,6 +32,6 @@ module.exports = {
         .setImage("https://i.gifer.com/1Fdu.gif")
         .setFooter('*I also like pizza*');
 
-        message.channel.send(helpEmbed).then(sentEmbed => {sentEmbed.react("🍕")} );
+        message.channel.send(helpEmbed).then(sentEmbed => {sentEmbed.react("🍕")} ).then(msg => { msg.delete({timeout: 60000}) });
     }
 }

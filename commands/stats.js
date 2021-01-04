@@ -45,7 +45,7 @@ module.exports = {
                 .setColor("#800080")
                 .setTitle("Stats for " + memberTarget.user.tag)
                 .addFields(
-                    {name: "RP", value: guildStats[target.id].rp},
+                    //{name: "RP", value: guildStats[target.id].rp},
                     {name: "Reliability", value: guildStats[target.id].reliability + "%"},
                     {name: "All Time RP", value: guildStats[target.id].allTimeRP},
                     {name: "Account Balance", value: guildStats[target.id].money + " :dollar:"},
@@ -53,7 +53,7 @@ module.exports = {
                 )
                 .setImage(target.avatarURL())
 
-                message.channel.send(statsEmbed);
+                message.channel.send(statsEmbed).then(msg => { msg.delete({timeout: 60000}) });
 
                 //message.channel.send(`<@${memberTarget.user.id}>` + "'s " + "rp is " + guildStats[target.id].rp);
             } else{

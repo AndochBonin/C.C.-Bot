@@ -30,7 +30,7 @@ module.exports = {
         const userStats = guildStats[message.author.id];
 
         if(!args[0]){
-            message.channel.send(shop);
+            message.channel.send(shop).then(msg => { msg.delete({timeout: 60000}) });
             return;
         }
 

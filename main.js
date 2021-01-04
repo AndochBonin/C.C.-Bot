@@ -64,14 +64,14 @@ client.on('message', message => {
     //client.channels.cache.get("786471369201287200").send("last message = " + userStats.last_message);
     //client.channels.cache.get("786471369201287200").send("Difference in seconds = " + (Date.now() - userStats.last_message)/1000);
 
-    if (Date.now() - userStats.last_message >= 25000 && acceptedChannels.includes(message.channel.id) && userStats.daily < 100){
+    if (acceptedChannels.includes(message.channel.id) && Date.now() - userStats.last_message >= 25000 && userStats.daily < 100){
         //client.channels.cache.get("786471369201287200").send("Date.now() = " + Date.now());
         //client.channels.cache.get("786471369201287200").send("last message = " + userStats.last_message);
         //client.channels.cache.get("786471369201287200").send("Difference in seconds = " + (Date.now() - userStats.last_message)/1000);
         userStats.last_message = Date.now();
         jsonfile.writeFileSync('stats.json', stats);
         let moneyChance = Math.floor(Math.random() * 100) + 1;
-        client.channels.cache.get("786471369201287200").send(moneyChance);
+        //client.channels.cache.get("786471369201287200").send(moneyChance);
         if (moneyChance <= 10){
             if(message.member.roles.cache.find(r => r.name === "fortune")){
                 userStats.money += 5;
