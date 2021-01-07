@@ -3,13 +3,13 @@ module.exports = {
     description: "displays all commands C.C. can do",
     execute(message, args, Discord){
 
+        message.delete();
         if (message.member.user.id === "391199878015090680"){
             const attachment = 'https://i.pinimg.com/originals/18/41/8d/18418da444b95b0b0e1e1ee166e915e9.gif';
-            message.channel.send("You don't need any help... you are *Lelouch* remember:smiling_face_with_3_hearts:");
-            message.channel.send(attachment);
+            message.channel.send("You don't need any help... you are *Lelouch* remember:smiling_face_with_3_hearts:").then(msg => { msg.delete({timeout: 60000}) });
+            message.channel.send(attachment).then(msg => { msg.delete({timeout: 60000}) });
             return;
         }
-
         const helpEmbed = new Discord.MessageEmbed()
         .setColor('#32CD32')
         .setTitle('Commands')
@@ -32,6 +32,9 @@ module.exports = {
         .setImage("https://i.gifer.com/1Fdu.gif")
         .setFooter('*I also like pizza*');
 
-        message.channel.send(helpEmbed).then(sentEmbed => {sentEmbed.react("🍕")} ).then(msg => { msg.delete({timeout: 60000}) });
+        message.channel.send(helpEmbed).then(sentEmbed => {
+            sentEmbed.react("🍕");
+            sentEmbed.delete({timeout: 60000});
+        } );
     }
 }

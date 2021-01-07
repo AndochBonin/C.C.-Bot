@@ -31,7 +31,7 @@ module.exports = {
                 return;
             }
 
-            let amount = Number(args[0]);
+            let amount = Math.floor(Number(args[0]));
 
             const senderStats = guildStats[message.author.id];
 
