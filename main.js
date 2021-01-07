@@ -54,6 +54,7 @@ client.on('message', message => {
             name: message.author.tag,
             daily: 0,
             geass: "",
+            steals: 0,
         }
     }
     const userStats = guildStats[message.author.id];
@@ -138,10 +139,12 @@ client.on('message', message => {
         client.commands.get('shop').execute(message, args, Discord);
     }
     if (command == 'steal'){
-        client.commands.get('steal').execute(message, args);
+        message.channel.send("https://i.gifer.com/IlDK.gif");
+        //client.commands.get('steal').execute(message, args);
     }
     if (command == 'send'){
-        client.commands.get('send').execute(message, args);
+        message.channel.send("https://i.gifer.com/IlDK.gif");
+        //client.commands.get('send').execute(message, args);
     }
     if (command == 'sendpic'){
         client.commands.get('sendPic').execute(message, args);
@@ -149,8 +152,16 @@ client.on('message', message => {
     if (command == "listemojis") {
         const emojiList = message.guild.emojis.cache.map(emoji => emoji.toString()).join(" ");
         message.channel.send(emojiList);
-      }
-
+    }
+    if (command == "bet") {
+        client.commands.get('bet').execute(message, args);
+    }
+    /*
+    if (command == 'codeleaders'){
+        client.commands.get('codeLeaders').execute(message, args);
+    }
+    */
+   
     stats = jsonfile.readFileSync('stats.json');
     //const userStats = guildStats[message.author.id];
     if (totalRP != 0){
@@ -232,6 +243,7 @@ function giveEarlyPoints(){
                         name: member.user.tag,
                         daily: 0,
                         geass: "",
+                        steals: 0,
                     };
                 }
                 client.channels.cache.get("786471369201287200").send(`${member.user.tag} is on the call`);
@@ -278,6 +290,7 @@ function givePoints(){
                             name: member.user.tag,
                             daily: 0,
                             geass: "",
+                            steals: 0,
                         };
                     }
                 
@@ -318,6 +331,7 @@ function setZero(){
             guildStats[Object.keys(guildStats)[i]].money += Math.floor(guildStats[Object.keys(guildStats)[i]].rp / 2);
             guildStats[Object.keys(guildStats)[i]].rp = 0;
             guildStats[Object.keys(guildStats)[i]].reliability = 0;
+            guildStats[Object.keys(guildStats)[i]].steals = 0;
             i++;
         }
         //message.channel.send("all rp and reliability set to zero, money also added.");

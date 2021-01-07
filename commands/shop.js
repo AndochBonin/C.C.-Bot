@@ -21,7 +21,7 @@ module.exports = {
             {name: "Discord Nitro - $100K", value: "user will be gifted discord nitro from C.C."},
             {name: "Mecha-Senku", value: "Unreleased"},
         )
-
+        message.delete();
         var data = {};
         if (fs.existsSync('stats.json')){
             data = jsonfile.readFileSync('stats.json');
@@ -65,11 +65,11 @@ module.exports = {
                 message.channel.send("You cannot afford this item.");
             }
         }
-        else if(args[0] == "steal1" || args[0] == "protection1"){
-            if (userStats.money >= 300){
+        else if(args[0] == "protection1"){
+            if (userStats.money >= 200){
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
                 if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
-                userStats.money -= 300;
+                userStats.money -= 200;
                 jsonfile.writeFileSync('stats.json', data);
                 message.channel.send("You just bought " + args[0] + "!");
             } 
@@ -77,7 +77,7 @@ module.exports = {
                 message.channel.send("You cannot afford this item.");
             }
         }
-        else if(args[0] == "steal2" || args[0] == "protection2"){
+        else if(args[0] == "steal1" || args[0] == "protection2"){
             if (userStats.money >= 500){
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
                 if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
@@ -89,11 +89,23 @@ module.exports = {
                 message.channel.send("You cannot afford this item.");
             }
         }
-        else if(args[0] == "steal3" || args[0] == "protection3"){
-            if (userStats.money >= 750){
+        else if(args[0] == "steal2" || args[0] == "protection3"){
+            if (userStats.money >= 1000){
                 let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
                 if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
-                userStats.money -= 750;
+                userStats.money -= 1000;
+                jsonfile.writeFileSync('stats.json', data);
+                message.channel.send("You just bought " + args[0] + "!");
+            } 
+            else {
+                message.channel.send("You cannot afford this item.");
+            }
+        }
+        else if(args[0] == "steal3"){
+            if (userStats.money >= 2500){
+                let role = message.member.guild.roles.cache.find(role => role.name === args[0]);
+                if (role) message.guild.members.cache.get(message.author.id).roles.add(role);
+                userStats.money -= 2500;
                 jsonfile.writeFileSync('stats.json', data);
                 message.channel.send("You just bought " + args[0] + "!");
             } 

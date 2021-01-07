@@ -11,7 +11,7 @@ module.exports = {
         if (fs.existsSync('stats.json')){
             stats = jsonfile.readFileSync('stats.json');
         }
-
+        message.delete();
         const guildStats = stats["738087569325293728"];
         
         let target = message.mentions.users.first();

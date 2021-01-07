@@ -52,14 +52,20 @@ module.exports = {
                     return;
                 }
             }
-            if (member.roles.cache.find(r => r.name === "protection2")){
+            if (member.roles.cache.find(r => r.name === "protection3")){
                 message.channel.send("This user is protected from your geass.")
                 return;
             }
-
-            let amount = Number(args[0]);
+            let amount = Math.floor(Number(args[0]));
 
             const thiefStats = guildStats[message.author.id];
+            let stealChance = Math.floor(Math.random() * 100) + 1;
+            if (stealChance > 80 - thiefStats.steals){
+                message.channel.send("Heist unsuccessful.");
+                thiefStats.steals += 20;
+                jsonfile.writeFileSync('stats.json', stats);
+                return;
+            }
 
             try{
                 if (target.id in guildStats){
@@ -70,6 +76,7 @@ module.exports = {
                     }
                     victimStats.money -= amount;
                     thiefStats.money += amount;
+                    thiefStats.steals += 20;
                     jsonfile.writeFileSync('stats.json', stats);
                     message.channel.send("You have stolen " + amount + "!");
                 } else{
