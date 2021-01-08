@@ -40,6 +40,7 @@ module.exports = {
                 return;
             }
             guildStats[target.id].money += Math.floor(args[0]) / 100 * payOut;
+            guildStats[target.id].money = Number(guildStats[target.id].money.toFixed(2));
             jsonfile.writeFileSync('stats.json', stats);
             message.channel.send("You win! Payout: " + Math.floor(args[0]) / 100 * payOut);
         }
@@ -53,6 +54,7 @@ module.exports = {
                 return;
             }
             guildStats[target.id].money += Math.floor(args[0]) / 100 * payOut;
+            guildStats[target.id].money = Number(guildStats[target.id].money.toFixed(2));
             jsonfile.writeFileSync('stats.json', stats);
             message.channel.send("You win! Payout: " + Math.floor(args[0]) / 100 * payOut);
         } 

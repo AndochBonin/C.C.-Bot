@@ -4,35 +4,34 @@ const jsonfile = require('jsonfile');
 
 
 module.exports = {
-    name: 'codeLeaders',
-    description: "sends codewars leaderboard",
+    name: 'hackLeaders',
+    description: "sends tryhackme leaderboard",
     execute (message, args, Discord){
         
         message.delete({timeout: 60000});
         let codeArr = [];
         let size = 0;
+
         async function scrapeCodeWars(id, url){
             const browser = await puppeteer.launch();
             const page = await browser.newPage();
             await page.goto(url);
             
-            const [el] = await page.$x('//*[@id="shell_content"]/div[5]/div/div[1]/div/section/div[1]/div/div[1]/div[2]/text()');
-            const txt = await el.getProperty('innerHTML');
-            const rawText = await txt.jsonValue();
+            const [el] = await page.$x('//*[@id="user-rank"]');
+            const txt = await el.getProperty('textContent');
+            let rawText = await txt.jsonValue();
+            //rawText = rawText.slice(7);
 
             let obj = {
                 name: id,
-                points: Number(rawText),
+                points: rawText,
             }
             codeArr.push(obj);
             browser.close();
         }
         async function scrape (){
-            await scrapeCodeWars('Lelouch', 'https://www.codewars.com/users/Lelouch%20Vi%2033');
-            await scrapeCodeWars('Ghadi', 'https://www.codewars.com/users/GhadiAgha');
-            await scrapeCodeWars('Amen', 'https://www.codewars.com/users/Amenoreys');
-            await scrapeCodeWars('Geoffrey', 'https://www.codewars.com/users/AceOfTheHood');
-            await scrapeCodeWars('Senku', 'https://www.codewars.com/users/0xBADC0D3');
+            await scrapeCodeWars('Lelouch', 'https://tryhackme.com/p/LelouchVi33');
+            await scrapeCodeWars('Senku', 'https://tryhackme.com/p/senku404');
         }
 
         function sortAndSend(){
@@ -53,9 +52,6 @@ module.exports = {
             .addFields(
                 {name: "1st - " + codeArr[0].name, value: "**----- " + codeArr[0].points + "**"},
                 {name: "2nd - " + codeArr[1].name, value: "**----- " + codeArr[1].points + "**"},
-                {name: "3rd - " + codeArr[2].name, value: "**----- " + codeArr[2].points + "**"},
-                {name: "4th - " + codeArr[3].name, value: "**----- " + codeArr[3].points + "**"},
-                {name: "5th - " + codeArr[4].name, value: "**----- " + codeArr[4].points + "**"},
             )
             message.channel.send(leadersEmbed).then(msg => { msg.delete({timeout: 60000}) });
         }

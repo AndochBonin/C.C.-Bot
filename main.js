@@ -139,12 +139,12 @@ client.on('message', message => {
         client.commands.get('shop').execute(message, args, Discord);
     }
     if (command == 'steal'){
-        message.channel.send("https://i.gifer.com/IlDK.gif");
-        //client.commands.get('steal').execute(message, args);
+        //message.channel.send("https://i.gifer.com/IlDK.gif");
+        client.commands.get('steal').execute(message, args);
     }
     if (command == 'send'){
-        message.channel.send("https://i.gifer.com/IlDK.gif");
-        //client.commands.get('send').execute(message, args);
+        //message.channel.send("https://i.gifer.com/IlDK.gif");
+        client.commands.get('send').execute(message, args);
     }
     if (command == 'sendpic'){
         client.commands.get('sendPic').execute(message, args);
@@ -156,11 +156,14 @@ client.on('message', message => {
     if (command == "bet") {
         client.commands.get('bet').execute(message, args);
     }
-    /*
     if (command == 'codeleaders'){
-        client.commands.get('codeLeaders').execute(message, args);
+        client.commands.get('codeLeaders').execute(message, args, Discord);
     }
-    */
+    if (command == 'hackleaders'){
+        //client.commands.get('hackLeaders').execute(message, args, Discord);
+        message.channel.send("https://i.gifer.com/IlDK.gif");
+    }
+    
    
     stats = jsonfile.readFileSync('stats.json');
     //const userStats = guildStats[message.author.id];
