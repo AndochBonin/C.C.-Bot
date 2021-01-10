@@ -15,7 +15,9 @@ module.exports = {
         .setTitle('Commands')
         .addFields(
             {name: '!', value: 'this is the prefix before every command'},
+            {name: 'bet', value: 'over/under gambling command'},
             {name: 'clear', value: 'clears a specified number of messages'},
+            {name: 'codeLeaders', value: 'displays the Codewars leaderboard'},
             {name: 'leaders (m, rp, rb)', value: "displays the top 5 users based on the metric provided"},
             {name: 'listEmojis', value: 'lists all the server emojis'},
             {name: 'mute', value: 'mutes the first person who is tagged'},
@@ -23,7 +25,7 @@ module.exports = {
             {name: 'ping', value: 'sends the bots ping'},
             {name: 'send', value: 'sends the amount chosen to the first person tagged'},
             {name: 'sendPic (nude)', value: 'sends picture of C.C. depending on who you are'},
-            {name: 'shop', value: 'displays the items in the shop if no item is chosen'},
+            {name: 'shop ([nameOfItem])', value: 'displays the items in the shop if no item is chosen'},
             {name: 'stats', value: 'displays the stats of the first person tagged'},
             {name: 'steal', value: 'steals the amount chosen from the first person tagged'},
             {name: 'unmute', value: 'unmutes the first person tagged'},

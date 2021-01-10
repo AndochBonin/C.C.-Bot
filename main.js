@@ -154,7 +154,7 @@ client.on('message', message => {
         message.channel.send(emojiList);
     }
     if (command == "bet") {
-        client.commands.get('bet').execute(message, args);
+        client.commands.get('bet').execute(message, args, Discord);
     }
     if (command == 'codeleaders'){
         client.commands.get('codeLeaders').execute(message, args, Discord);
@@ -163,7 +163,11 @@ client.on('message', message => {
         //client.commands.get('hackLeaders').execute(message, args, Discord);
         message.channel.send("https://i.gifer.com/IlDK.gif");
     }
-    
+    /*
+    if (command == 'stocks'){
+        client.commands.get('stocks').execute(message, args, Discord);
+    }
+    */
    
     stats = jsonfile.readFileSync('stats.json');
     //const userStats = guildStats[message.author.id];
