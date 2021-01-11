@@ -1,6 +1,10 @@
 const { MessageAttachment } = require('discord.js');
 const stock = require('finance.io')
 const puppeteer = require('puppeteer');
+var stats = {};
+/*if (fs.existsSync('stocks.json')){
+    stats = jsonfile.readFileSync('stocks.json');
+}*/
 
 module.exports = {
     name: 'stocks',
@@ -37,6 +41,9 @@ module.exports = {
                 
             }
             getGraph();
+
+        }
+        else if (args[1] && args[1] == 'buy'){
 
         }
         if (!args[1]){
