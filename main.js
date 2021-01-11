@@ -219,10 +219,10 @@ client.on('ready', () => {
 function leftToEight(){
     let d = new Date();
     let secs = (d.getHours() * 60 + d.getMinutes()) * 60 + d.getSeconds();
-    if (secs <= 75600){
-        return (75600 - secs); 
+    if (secs <= 76200){
+        return (76200 - secs); 
     }
-    return((86400 - secs) + 75600);
+    return((86400 - secs) + 76200);
 }
 
 function giveEarlyPoints(){
