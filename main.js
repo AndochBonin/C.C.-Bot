@@ -163,11 +163,10 @@ client.on('message', message => {
         //client.commands.get('hackLeaders').execute(message, args, Discord);
         message.channel.send("https://i.gifer.com/IlDK.gif");
     }
-    /*
     if (command == 'stocks'){
         client.commands.get('stocks').execute(message, args, Discord);
     }
-    */
+    
    
     stats = jsonfile.readFileSync('stats.json');
     //const userStats = guildStats[message.author.id];
@@ -413,4 +412,4 @@ function resetGeass(){
     
 }
 
-client.login('Nzg2NDEwMjg2Njk2NDk3MTgz.X9F_pw.5oGg5Uv0qNUasjMxNiBoJbNlrsQ');
+client.login('Nzg2NDEwMjg2Njk2NDk3MTgz.X9F_pw.ITCj5sYHLIOYomB4NO7nrlEBpjY');
