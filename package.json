@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
     "finance.io": "^0.1.6",
     "jsonfile": "^6.1.0",
     "puppeteer": "^5.5.0"
