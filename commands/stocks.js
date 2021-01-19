@@ -32,6 +32,58 @@ module.exports = {
         }
         const userStocks = guildStocks[message.author.id];
 
+        if (args[1] == 'portfolio'){
+            try {
+                stock
+                    .getInfo(args[0])
+                    .then((data) => {
+                        let stockStr = JSON.stringify(data, null, 4);
+                    })
+                    .catch((err) => {
+                        message.channel.send(
+                            'Use the security symbol of the company. e.g (TSLA).\nUse this link as a reference.\nhttps://www.nasdaq.com/market-activity/stocks/screener'
+                        );
+                        return;
+                    });
+            } catch (error) {
+                message.channel.send(
+                    'Use the security symbol of the company. e.g (TSLA).\nUse this link as a reference.\nhttps://www.nasdaq.com/market-activity/stocks/screener'
+                );
+                return;
+            }
+            if (args[0].toLowerCase() in userStocks == false){
+                "You do not own shares in the company.";
+                return;
+            }
+            let color;
+            if (userStocks[args[0].toLowerCase()].profit >= 0){
+                color = "#00FF00";
+            } else {
+                color = "#FF0000";
+            }
+
+            stock
+                    .getInfo(args[0])
+                    .then((data) => {
+                        let stockStr = JSON.stringify(data, null, 4);
+                        let stockObj = JSON.parse(stockStr);
+                        userStocks[args[0].toLowerCase()].profit =
+                        userStocks[args[0].toLowerCase()].numberOfStocks * MyStock.currentPrice - userStocks[stockName].totalSpentOnStock;
+                        jsonfile.writeFileSync('stocks.json', stocks);
+                    })
+
+            const statsEmbed = new Discord.MessageEmbed()
+                .setColor(color)
+                .setTitle(args[0].toUpperCase() + " Portfolio")
+                .addFields(
+                    {name: "Shares", value: userStocks[args[0].toLowerCase()].numberOfStocks},
+                    {name: "Spent On Stock", value: userStocks[args[0].toLowerCase()].totalSpentOnStock},
+                    {name: "Profit", value: userStocks[args[0].toLowerCase()].profit}
+                )
+            message.channel.send(statsEmbed);
+            return;
+        }
+
         if (args[1] && args[1] == 'graph') {
             try {
                 stock
@@ -69,7 +121,7 @@ module.exports = {
                 message.channel.send(graphAttach);
             }
             getGraph();
-        } else if (args[1] && args[1] == 'buy') {
+        } else if (args[1] && args[1] == 'buy'){
             try {
                 stock
                     .getInfo(args[0])
@@ -98,31 +150,86 @@ module.exports = {
                 return;
             }
 
-            const MyStock = new StockCal();
-            MyStock.getInfo({ query: args[0], money: args[2] });
-            debug(MyStock.getStock);
-            let stockName = args[0];
-            let buyAmount = Number(args[2]);
-
-            if (args[0] in userStocks == false) {
-                userStocks[stockName] = {
-                    numberOfStocks: MyStock.numStock,
-                    totalSpentOnStock: Number(buyAmount),
-                    profit: 0,
-                };
-
-                jsonfile.writeFileSync('stocks.json', stocks);
+            if (args[0].toLowerCase() in userStocks == false) {
+                stock
+                    .getInfo(args[0])
+                    .then((data) => {
+                        let stockStr = JSON.stringify(data, null, 4);
+                        let stockObj = JSON.parse(stockStr);
+                        userStocks[args[0].toLowerCase()] = {
+                            numberOfStocks: Number(args[2]) / stockObj.currentPrice,
+                            totalSpentOnStock: Number(args[2]),
+                            profit: 0,
+                        };
+                        jsonfile.writeFileSync('stocks.json', stocks);
+                    })
+                message.channel.send("You have bought " + args[0] + " stocks!");
+                guildStats[message.author.id].money -= args[2];
                 jsonfile.writeFileSync('stats.json', stats);
             } else {
-                userStocks[stockName].numberOfStocks += MyStock.numStock;
-                userStocks[stockName].totalSpentOnStock += Number(buyAmount);
-                userStocks[stockName].profit =
-                    userStocks[stockName].numberOfStocks *
-                        MyStock.currentPrice -
-                    userStocks[stockName].totalSpentOnStock;
-
-                jsonfile.writeFileSync('stocks.json', stocks);
+                stock
+                    .getInfo(args[0])
+                    .then((data) => {
+                        let stockStr = JSON.stringify(data, null, 4);
+                        let stockObj = JSON.parse(stockStr);
+                        userStocks[args[0].toLowerCase()].numberOfStocks += Number(args[2]) / stockObj.currentPrice;
+                        userStocks[args[0].toLowerCase()].totalSpentOnStock += Number(buyAmount);
+                        userStocks[args[0].toLowerCase()].profit =
+                        userStocks[args[0].toLowerCase()].numberOfStocks * MyStock.currentPrice - userStocks[stockName].totalSpentOnStock;
+                        jsonfile.writeFileSync('stocks.json', stocks);
+                    })
+                message.channel.send("You have bought " + args[0] + " stocks!");
+                guildStats[message.author.id].money -= args[2];
                 jsonfile.writeFileSync('stats.json', stats);
+            }
+        }
+        else if (args[1] && args[1] == 'sell'){
+            try {
+                stock
+                    .getInfo(args[0])
+                    .then((data) => {
+                        let stockStr = JSON.stringify(data, null, 4);
+                    })
+                    .catch((err) => {
+                        message.channel.send(
+                            'Use the security symbol of the company. e.g (TSLA).\nUse this link as a reference.\nhttps://www.nasdaq.com/market-activity/stocks/screener'
+                        );
+                        return;
+                    });
+            } catch (error) {
+                message.channel.send(
+                    'Use the security symbol of the company. e.g (TSLA).\nUse this link as a reference.\nhttps://www.nasdaq.com/market-activity/stocks/screener'
+                );
+                return;
+            }
+            if (!args[2]) {
+                message.channel.send('Choose a number of stocks to sell.');
+                return;
+            }
+            if (args[2] > userStocks.numberOfStocks) {
+                message.channel.send('You do not have sufficient stocks.');
+                return;
+            }
+
+            if (args[0].toLowerCase() in userStocks == false) {
+                message.channel.send("You do not have any shares in this company.");
+                return;
+            } else {
+                stock
+                    .getInfo(args[0])
+                    .then((data) => {
+                        let stockStr = JSON.stringify(data, null, 4);
+                        let stockObj = JSON.parse(stockStr);
+                        userStocks[args[0].toLowerCase()].totalSpentOnStock -= 
+                        Number(args[2]) / numberOfStocks * 100 * userStocks[args[0].toLowerCase()].totalSpentOnStock;
+                        userStocks[args[0].toLowerCase()].numberOfStocks -= Number(args[2]);
+                        userStocks[args[0].toLowerCase()].profit =
+                        userStocks[args[0].toLowerCase()].numberOfStocks * MyStock.currentPrice - userStocks[stockName].totalSpentOnStock;
+                        guildStats[message.author.id].money += args[2] * stockObj.currentPrice;
+                        jsonfile.writeFileSync('stats.json', stats);
+                        jsonfile.writeFileSync('stocks.json', stocks);
+                    })
+                message.channel.send("You have bought " + args[0] + " stocks!");
             }
         }
 

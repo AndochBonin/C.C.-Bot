@@ -30,7 +30,7 @@ if (fs.existsSync('stats.json')) {
 }
 
 client.once('ready', () => {
-    debug('C.C is at your command.');
+    console.log('C.C is at your command.');
 });
 
 client.on('message', (message) => {
@@ -71,18 +71,11 @@ client.on('message', (message) => {
         '772063969556299806',
     ];
 
-    //client.channels.cache.get("786471369201287200").send("Date.now() = " + Date.now());
-    //client.channels.cache.get("786471369201287200").send("last message = " + userStats.last_message);
-    //client.channels.cache.get("786471369201287200").send("Difference in seconds = " + (Date.now() - userStats.last_message)/1000);
-
     if (
         acceptedChannels.includes(message.channel.id) &&
         Date.now() - userStats.last_message >= 25000 &&
         userStats.daily < 100
     ) {
-        //client.channels.cache.get("786471369201287200").send("Date.now() = " + Date.now());
-        //client.channels.cache.get("786471369201287200").send("last message = " + userStats.last_message);
-        //client.channels.cache.get("786471369201287200").send("Difference in seconds = " + (Date.now() - userStats.last_message)/1000);
         userStats.last_message = Date.now();
         jsonfile.writeFileSync('stats.json', stats);
         let moneyChance = Math.floor(Math.random() * 100) + 1;
