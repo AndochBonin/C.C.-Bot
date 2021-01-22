@@ -163,7 +163,7 @@ module.exports = {
                         };
                         jsonfile.writeFileSync('stocks.json', stocks);
                     })
-                message.channel.send("You have bought " + args[0] + " stocks!");
+                message.channel.send("You have bought " + args[0].toUpperCase() + " stocks!");
                 guildStats[message.author.id].money -= args[2];
                 jsonfile.writeFileSync('stats.json', stats);
             } else {
@@ -178,7 +178,7 @@ module.exports = {
                         userStocks[args[0].toLowerCase()].numberOfStocks * MyStock.currentPrice - userStocks[stockName].totalSpentOnStock;
                         jsonfile.writeFileSync('stocks.json', stocks);
                     })
-                message.channel.send("You have bought " + args[0] + " stocks!");
+                message.channel.send("You have bought " + args[0].toUpperCase() + " stocks!");
                 guildStats[message.author.id].money -= args[2];
                 jsonfile.writeFileSync('stats.json', stats);
             }
@@ -229,7 +229,7 @@ module.exports = {
                         jsonfile.writeFileSync('stats.json', stats);
                         jsonfile.writeFileSync('stocks.json', stocks);
                     })
-                message.channel.send("You have bought " + args[0] + " stocks!");
+                message.channel.send("You have sold " + args[0].toUpperCase() + " stocks!");
             }
         }
 
