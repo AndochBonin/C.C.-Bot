@@ -387,9 +387,20 @@ function resetGeass() {
         'protection3',
         'fortune',
     ];
+
+    let colourRoles = [
+        'blue',
+        'green',
+        'orange',
+        'purple',
+        'red',
+        'yellow',
+    ];
+
     let defRoleIDs = ['mute', 'disconnect', 'clear'];
     let i = 0;
     let j = 0;
+    let k = 0;
     let guild = client.guilds.cache.get('738087569325293728');
     //delete roles
 
@@ -400,6 +411,10 @@ function resetGeass() {
     for (person in defRoleIDs) {
         guild.roles.cache.find((role) => role.name === defRoleIDs[j]).delete();
         j++;
+    }
+    for (person in colourRoles) {
+        guild.roles.cache.find((role) => role.name === colourRoles[k]).delete();
+        k++;
     }
 
     //create roles
@@ -433,6 +448,42 @@ function resetGeass() {
             name: 'disconnect',
             color: 'GREY',
             permissions: ['MOVE_MEMBERS'],
+        },
+    });
+    guild.roles.create({
+        data: {
+            name: 'blue',
+            color: 'BLUE',
+        },
+    });
+    guild.roles.create({
+        data: {
+            name: 'green',
+            color: 'GREEN',
+        },
+    });
+    guild.roles.create({
+        data: {
+            name: 'orange',
+            color: 'ORANGE',
+        },
+    });
+    guild.roles.create({
+        data: {
+            name: 'blue',
+            color: 'PURPLE',
+        },
+    });
+    guild.roles.create({
+        data: {
+            name: 'red',
+            color: 'RED',
+        },
+    });
+    guild.roles.create({
+        data: {
+            name: 'yellow',
+            color: 'YELLOW',
         },
     });
 }
