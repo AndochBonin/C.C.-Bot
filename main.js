@@ -232,8 +232,8 @@ client.on('ready', () => {
 function leftToEight() {
     let d = new Date();
     let secs = (d.getHours() * 60 + d.getMinutes()) * 60 + d.getSeconds();
-    if (secs <= 76800) {
-        return 76800 - secs;
+    if (secs <= 77400) {
+        return 77400 - secs;
     }
     return 86400 - secs + 76800;
 }

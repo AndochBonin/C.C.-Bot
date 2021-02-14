@@ -39,7 +39,7 @@ module.exports = {
             message.channel.send("You already have this geass.");
             return;
         }
-
+        
         if(args[0] == "color") {
             if (userStats.money >= 250){
                 if (!args[1]) {
@@ -60,6 +60,7 @@ module.exports = {
                 message.channel.send("You cannot afford this item.");
             }
         }
+        
 
         if(args[0] == "disconnect" || args[0] == "mute" || args[0] == "clear") {
             if (userStats.money >= 500){
