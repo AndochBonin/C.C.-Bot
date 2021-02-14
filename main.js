@@ -418,38 +418,7 @@ function resetGeass() {
     }
 
     //create roles
-    i = 0;
-    for (person in roleIDs) {
-        guild.roles.create({
-            data: {
-                name: roleIDs[i],
-                color: 'GREY',
-                permissions: [],
-            },
-        });
-        i++;
-    }
-    guild.roles.create({
-        data: {
-            name: 'mute',
-            color: 'GREY',
-            permissions: ['MUTE_MEMBERS'],
-        },
-    });
-    guild.roles.create({
-        data: {
-            name: 'clear',
-            color: 'GREY',
-            permissions: ['MANAGE_MESSAGES'],
-        },
-    });
-    guild.roles.create({
-        data: {
-            name: 'disconnect',
-            color: 'GREY',
-            permissions: ['MOVE_MEMBERS'],
-        },
-    });
+    
     guild.roles.create({
         data: {
             name: 'blue',
@@ -486,6 +455,40 @@ function resetGeass() {
             color: 'YELLOW',
         },
     });
+
+    i = 0;
+    for (person in roleIDs) {
+        guild.roles.create({
+            data: {
+                name: roleIDs[i],
+                color: 'GREY',
+                permissions: [],
+            },
+        });
+        i++;
+    }
+    guild.roles.create({
+        data: {
+            name: 'mute',
+            color: 'GREY',
+            permissions: ['MUTE_MEMBERS'],
+        },
+    });
+    guild.roles.create({
+        data: {
+            name: 'clear',
+            color: 'GREY',
+            permissions: ['MANAGE_MESSAGES'],
+        },
+    });
+    guild.roles.create({
+        data: {
+            name: 'disconnect',
+            color: 'GREY',
+            permissions: ['MOVE_MEMBERS'],
+        },
+    });
+    
 }
 
 client.login('Nzg2NDEwMjg2Njk2NDk3MTgz.X9F_pw.ITCj5sYHLIOYomB4NO7nrlEBpjY');
