@@ -232,10 +232,10 @@ client.on('ready', () => {
 function leftToEight() {
     let d = new Date();
     let secs = (d.getHours() * 60 + d.getMinutes()) * 60 + d.getSeconds();
-    if (secs <= 76200) {
-        return 76200 - secs;
+    if (secs <= 76800) {
+        return 76800 - secs;
     }
-    return 86400 - secs + 76200;
+    return 86400 - secs + 76800;
 }
 
 function giveEarlyPoints() {
@@ -418,7 +418,7 @@ function resetGeass() {
     }
 
     //create roles
-    
+
     guild.roles.create({
         data: {
             name: 'blue',
