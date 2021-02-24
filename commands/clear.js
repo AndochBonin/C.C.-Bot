@@ -15,9 +15,13 @@ module.exports = {
         if (args[0] > 500 || args[0] < 1) {
             return message.reply('Beyond your limits.');
         }
-
-        await message.channel.messages.fetch({limit: args[0]}).then(messages => {
-            message.channel.bulkDelete(messages);
-        });
+        try {
+            await message.channel.messages.fetch({limit: args[0]}).then(messages => {
+                message.channel.bulkDelete(messages);
+            });
+        }
+        catch(error){
+            message.channel.send("This is not a number.");
+        }
     }
 }

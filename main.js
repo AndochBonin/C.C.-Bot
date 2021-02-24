@@ -32,7 +32,7 @@ if (fs.existsSync('stats.json')) {
 client.once('ready', () => {
     console.log('C.C is at your command.');
 });
-
+try {
 client.on('message', (message) => {
     client.user.setActivity('Lelouch vi 33', { type: 'LISTENING' });
 
@@ -193,7 +193,12 @@ client.on('message', (message) => {
     }
     //stats = jsonfile.readFileSync('stats.json');
 });
-
+}
+catch(error){
+    client.channels.cache
+                .get('786471369201287200')
+                .send(error);
+}
 client.on('ready', () => {
     setTimeout(function () {
         // in leftToEight() milliseconds run this:
