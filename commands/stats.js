@@ -53,7 +53,7 @@ module.exports = {
                 )
                 .setImage(target.avatarURL())
 
-                message.channel.send(statsEmbed).then(msg => { msg.delete({timeout: 60000}) });
+                message.channel.send(statsEmbed);
 
                 //message.channel.send(`<@${memberTarget.user.id}>` + "'s " + "rp is " + guildStats[target.id].rp);
             } else{

@@ -36,7 +36,6 @@ module.exports = {
 
         message.channel.send(helpEmbed).then(sentEmbed => {
             sentEmbed.react("🍕");
-            sentEmbed.delete({timeout: 60000});
         } );
     }
 }

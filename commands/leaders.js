@@ -79,7 +79,7 @@ module.exports = {
             {name: "4th - " + people[3].name, value: "**----- " + people[3].field + "**"},
             {name: "5th - " + people[4].name, value: "**----- " + people[4].field + "**"},
         )
-        message.channel.send(leadersEmbed).then(msg => { msg.delete({timeout: 60000}) });
+        message.channel.send(leadersEmbed);
     }
     //comment
 }
