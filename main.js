@@ -34,7 +34,7 @@ client.once('ready', () => {
 });
 try {
 client.on('message', (message) => {
-    client.user.setActivity('Lelouch vi 33', { type: 'LISTENING' });
+    client.user.setActivity('!help', { type: 'PLAYING' });
 
     if (message.author.id == client.user.id || message.author.bot) {
         return;

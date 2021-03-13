@@ -10,6 +10,27 @@ module.exports = {
             message.channel.send(attachment).then(msg => { msg.delete({timeout: 60000}) });
             return;
         }
+        const uwuEmbed = new Discord.MessageEmbed()
+        .setColor('#32CD32')
+        .setTitle('Commands')
+        .addFields(
+            {name: '!', value: 'this is the prefix before every command'},
+            {name: 'clear', value: 'clears a specified number of messages'},
+            {name: 'listEmojis', value: 'lists all the server emojis'},
+            {name: 'mute', value: 'mutes the first person who is tagged'},
+            {name: 'muteAll', value: 'mutes everyone on the voice channel'},
+            {name: 'ping', value: 'sends the bots ping'},
+            {name: 'sendPic (nude)', value: 'sends picture of C.C. depending on who you are'},
+            {name: 'unmute', value: 'unmutes the first person tagged'},
+            {name: 'unmuteAll', value: 'unmutes everyone on the voice channel'}
+        )
+        .setImage("https://i.gifer.com/1Fdu.gif")
+        .setFooter('This bot has limited functionality on this server (the uwu lands), as some of its features clash with other bots.');
+
+        if (message.guild.id == "763347569035313183"){
+            message.channel.send(uwuEmbed);
+            return;
+        }
         const helpEmbed = new Discord.MessageEmbed()
         .setColor('#32CD32')
         .setTitle('Commands')
