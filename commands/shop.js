@@ -10,6 +10,7 @@ module.exports = {
         .setTitle("ROG Marketplace\n___")
         .setFooter("no refunds. all purchases (excluding nitro) will be repossessed every sunday. prices are subject to change.")
         .addFields(
+            {name: "SYNTAX", value: "!shop itemName additionalArgs - e.g. !shop color blue"},
             {name: "Geass/Abilities", value: "___\n "},
             {name: "mute - $500", value: "geass user will be able to silence anyone"},
             {name: "clear - $500", value: "geass user will be able to clear messages"},
@@ -46,7 +47,7 @@ module.exports = {
                     message.channel.send("Choose a color to buy.");
                     return;
                 }
-                if (args[1] != 'red' || args[1] != 'blue' || args[1] != 'green' || args[1] != 'yellow' || args[1] != 'orange' || args[1] != 'purple'){
+                if (args[1] != 'red' && args[1] != 'blue' && args[1] != 'green' && args[1] != 'yellow' && args[1] != 'orange' && args[1] != 'purple'){
                     message.channel.send("This color is not available.");
                     return;
                 }
