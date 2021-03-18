@@ -46,7 +46,7 @@ module.exports = {
                     message.channel.send("Choose a color to buy.");
                     return;
                 }
-                if (args[1] != 'red' || args[1] != 'blue' || args[1] != 'green' || args[1] != 'yellow' || args[1] != 'orange' || args[1] != 'purple'){
+                if (args[1] != 'red' && args[1] != 'blue' && args[1] != 'green' && args[1] != 'yellow' && args[1] != 'orange' && args[1] != 'purple'){
                     message.channel.send("This color is not available.");
                     return;
                 }
