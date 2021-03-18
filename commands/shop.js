@@ -10,6 +10,7 @@ module.exports = {
         .setTitle("ROG Marketplace\n___")
         .setFooter("no refunds. all purchases (excluding nitro) will be repossessed every sunday. prices are subject to change.")
         .addFields(
+            {name: "SYNTAX", value: "!shop itemName additionalArgs - e.g. !shop color blue"},
             {name: "Geass/Abilities", value: "___\n "},
             {name: "mute - $500", value: "geass user will be able to silence anyone"},
             {name: "clear - $500", value: "geass user will be able to clear messages"},
