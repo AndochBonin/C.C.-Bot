@@ -496,4 +496,4 @@ function resetGeass() {
     
 }
 
-client.login('Nzg2NDEwMjg2Njk2NDk3MTgz.X9F_pw.ITCj5sYHLIOYomB4NO7nrlEBpjY');
+client.login(/*api key*/);
