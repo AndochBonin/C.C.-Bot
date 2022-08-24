@@ -1,0 +1,391 @@
+    1  cd
+    2  sudo apt update && sudo apt upgrade -y
+    3  ls
+    4  apt install nodejs
+    5  nodejs
+    6  ping google.com
+    7  echo "All conditions cleared"
+    8  exit
+    9  cd
+   10  passwd
+   11  logout
+   12  exit
+   13  ls -la
+   14  ls
+   15  mkdir c.c bot
+   16  ls
+   17  rmdir c.c
+   18  rmdir bot
+   19  ls
+   20  mkdir c.c
+   21  ls
+   22  cd lelouch/desktop/c.c
+   23  cd .
+   24  cd ..
+   25  ls
+   26  cd tmp
+   27  ls
+   28  cd ..
+   29  ls
+   30  cd home
+   31  ls
+   32  cd lelouch
+   33  ls
+   34  pwd
+   35  cd c.c
+   36  pwd
+   37  ls
+   38  cd c.c bot
+   39  cd 'C.C Bot'
+   40  ls
+   41  node .
+   42  cd
+   43  cd c.c/C.C\ Bot/
+   44  neovim main.js 
+   45  vim main.js 
+   46  exit
+   47  ps
+   48  tmux
+   49  tmux attach-session
+   50  tmux list-sessions
+   51  tmux attach-session
+   52  cd
+   53  exit
+   54  su ubuntu
+   55  exit
+   56  cd
+   57  cd c.c/C.C\ Bot/
+   58  ls
+   59  tmux attach-session
+   60  cd
+   61  exit
+   62  cd
+   63  tmux attach-session
+   64  exit
+   65  cd
+   66  exit
+   67  cd
+   68  tmux attach-session
+   69  exit
+   70  nodejs --version
+   71  exit
+   72  cd
+   73  ls
+   74  tmux attach-session
+   75  exit
+   76  cd
+   77  ls
+   78  cd c.c/
+   79  ls
+   80  cd C.C\ Bot/
+   81  ls
+   82  node main.js 
+   83  npm install discordjs
+   84  npm install discord.js
+   85  node main.js 
+   86  npm install json
+   87  npm install jsonfile
+   88  npm install discord.js --save
+   89  npm install jsonfile --save
+   90  npm install json --save
+   91  ls node_modules/
+   92  cat package.json
+   93  cat stats.json 
+   94  node main.js 
+   95  sudo apt update
+   96  ls
+   97  node main.js 
+   98  ls
+   99  node main.js 
+  100  snap list
+  101  node
+  102  node list
+  103  nodejs
+  104  node
+  105  nvm use system
+  106  git clone https://github.com/nvm-sh/nvm
+  107  node main.js 
+  108  node
+  109  exit
+  110  node -v
+  111  tmux attach-session
+  112  node -v
+  113  cd 
+  114  node
+  115  cd c.c/C.C\ Bot/
+  116  ls
+  117  node main.js 
+  118  tmux
+  119  exit
+  120  cd c.c/C.C\ Bot/
+  121  git init --bare cc.git
+  122  tmux attach-session
+  123  exit
+  124  tmux attach-session
+  125  node main.js 
+  126  x
+  127  cd
+  128  mkdir CCdiscordbot
+  129  cd CCdiscordbot/
+  130  pwd
+  131  touch test
+  132  git init --bare
+  133  ls
+  134  ls -a
+  135  cd ..
+  136  rm -rf CCdiscordbot/
+  137  mkdir CC
+  138  cd CC/
+  139  git init --bare cc.git
+  140  ls
+  141  cd cc.git/
+  142  ls
+  143  pwd
+  144  touch test
+  145  vim test
+  146  git commit "first"
+  147  tldr git
+  148  ls
+  149  git --help
+  150  man git
+  151  cd
+  152  rm -rf CC
+  153  ls
+  154  cp c.c/C.C\ Bot/ CCBot
+  155  cp -r c.c/C.C\ Bot/ CCBot
+  156  ls
+  157  cd CCBot/
+  158  ls
+  159  ls cc.git/
+  160  rm -rf cc.git/
+  161  git --bare
+  162  git init --bare
+  163  ls
+  164  cd ..
+  165  rm -rf CCBot/
+  166  mkdir CCBot
+  167  cd CCBot/
+  168  git init --bare
+  169  ls
+  170  tmux list-sessions
+  171  tmux kill-session 0
+  172  tmux kill-session -t 0
+  173  tmux list-sessions
+  174  ps
+  175  ps kill 94820
+  176  kill 94820
+  177  ps
+  178  su ubuntu
+  179  exit
+  180  passwd
+  181  exit
+  182  ls
+  183  git clone https://github.com/AndochBonin/C.C.-Bot/tree/master
+  184  git clone https://github.com/AndochBonin/C.C.-Bot
+  185  ls
+  186  cd C.C.-Bot
+  187  node .
+  188  ls
+  189  git branch master
+  190  ls
+  191  node .
+  192  git checkout master
+  193  ls
+  194  node .
+  195  git branch
+  196  git checkout master
+  197  pwd
+  198  git pull
+  199  git pull master
+  200  git pull https://github.com/AndochBonin/C.C.-Bot master
+  201  ls
+  202  node .
+  203  giit branch --set-upstream-to=origin/<branch> master
+  204  giit branch --set-upstream-to=origin/master
+  205  git branch --set-upstream-to=origin/master
+  206  git pull
+  207  git pull origin master --allow-unrelated-histories
+  208  git config --global user.email "andochbonin@gmail.com"
+  209  git config --global user.name "AndochBonin"
+  210  ls
+  211  git pull origin master --allow-unrelated-histories
+  212  ls
+  213  node .
+  214  ls
+  215  cd CCBot/
+  216  ls
+  217  cd ../C.C.-Bot/
+  218  ls
+  219  cat stats.json 
+  220  ps
+  221  exit
+  222  locate stats.json
+  223  find stats.json /
+  224  find stats.json /home/lelouch
+  225  tldr findm
+  226  tldr find
+  227  find /home/lelouch -name stats.json
+  228  nvim /home/lelouch/c.c/C.C\ Bot/stats.json 
+  229  nvim /home/lelouch/C.C.-Bot/stats.json 
+  230  nvim /home/lelouch/c.c/C.C\ Bot/stats.json 
+  231  nvim /home/lelouch/C.C.-Bot/stats.json 
+  232  tmux attach-session
+  233  ps
+  234  cmatrix
+  235  ps
+  236  exit
+  237  ps
+  238  exit
+  239  ls
+  240  cd C.C.-Bot
+  241  git pull
+  242  node .
+  243  cd C.C.-Bot
+  244  git pull
+  245  node .
+  246  ls
+  247  C.C.-Bot
+  248  cd C.C.-Bot
+  249  node .
+  250  cd C.C.-Bot
+  251  node .
+  252  cd ..
+  253  ps -aux
+  254  kill -9 114304
+  255  node .
+  256  cd C.C.-Bot
+  257  node .
+  258  git pull
+  259  git status
+  260  git pull
+  261  node .
+  262  cd C.C.-Bot
+  263  git pull
+  264  node .
+  265  git commit -m 'temp'
+  266  git add.
+  267  git add .
+  268  git commit -m 'temp'
+  269  git pull
+  270  rm stats.json
+  271  ls
+  272  git pull
+  273  git status
+  274  git add .
+  275  ls
+  276  git status
+  277  git commit -m 'added main and stats'
+  278  git pull
+  279  ls
+  280  git pull
+  281  ls
+  282  node .
+  283  git pull
+  284  git status
+  285  git add .
+  286  git status
+  287  git commit -m 'restored stats file'
+  288  git status
+  289  git push
+  290  git pull
+  291  node .
+  292  ssh -p 42069 lelouch@93.156.160.241
+  293  node .
+  294  cd C.C.-Bot
+  295  tmux
+  296  tmux ssh -p 42069 lelouch@93.156.160.241
+  297  tmux attac-session
+  298  tmux attach-session
+  299  git pull
+  300  git status
+  301  git add .
+  302  git commit -m 'committing stats file to keep records'
+  303  git status
+  304  git pull
+  305  git status
+  306  git add.
+  307  git add .
+  308  git status
+  309  git commit -m 'stuff'
+  310  git push
+  311  git pull
+  312  tmux
+  313  git status
+  314  stats.json
+  315  cat stats.json
+  316  nano stats.json
+  317  cat stats.json
+  318  tmux
+  319  nano stats.json
+  320  tmux
+  321  nano stats.json
+  322  tmux
+  323  cd C.C.-Bot
+  324  tmux attach-session
+  325  git pull
+  326  cd c.c.-bot
+  327  cd C.C.-Bot
+  328  git pull
+  329  git add .
+  330  git stash -m 'stashed stats'
+  331  git commit -m 'stashed stats'
+  332  git merge
+  333  git pull -X theirs
+  334  git status
+  335  git merge --strategy-option theirs
+  336  git merge -s ours
+  337  git merge -s ours master
+  338  git add .
+  339  git status
+  340  git merge -s ours master
+  341  git merge --abort
+  342  git pull
+  343  rm stats.json
+  344  ls
+  345  git status
+  346  git add stats.json
+  347  git status
+  348  ls
+  349  git pull
+  350  git status
+  351  git commit -m 'stats'
+  352  ls
+  353  git status
+  354  git pull
+  355  ls
+  356  nano stats.json
+  357  git status
+  358  git add .
+  359  git commit -m 'stats.json fixed'
+  360  git push
+  361  tmux
+  362  cd C.C.-Bot
+  363  tmux attach-session
+  364  node .
+  365  echo hello
+  366  echo indeed
+  367  node .
+  368  git node .
+  369  node .
+  370  clear
+  371  node .
+  372  clear
+  373  node .
+  374  npm install puppeteer
+  375  node .
+  376  npm install finance.io@latest
+  377  node .
+  378  git add .
+  379  git commit -m 'normal cycle'
+  380  git push
+  381  node .
+  382  git add .
+  383  git commit -m "some shit"
+  384  git push
+  385  node .
+  386  echo hello andoch
+  387  node .
+  388  echo please fix the code
+  389  git pull
+  390  history
+  391  history > a.txt | nvim a.txt
